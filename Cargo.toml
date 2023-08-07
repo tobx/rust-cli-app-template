@@ -1,14 +1,14 @@
 [package]
 categories = ["command-line-utilities"]
-description = "Starter template for Rust CLI applications"
+description = "Starter template for CLI applications"
 documentation = "https://docs.rs/rust-cli-app-template"
 edition = "2021"
 homepage = "https://github.com/tobx/rust-cli-app-template"
 license-file = "MIT"
-name = "rust-cli-app-template"
+name = "cli-app-template"
 readme = "README.md"
 repository = "https://github.com/tobx/rust-cli-app-template"
-version = "0.1.0"
+version = "0.2.0"
 
 [dependencies]
 clap = { version = "4.3.19", features = ["derive"] }

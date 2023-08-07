@@ -1,6 +1,6 @@
-# Rust CLI application template
+# CLI application template for Rust
 
-This is an opinionated Rust CLI application starter template.
+This is an opinionated CLI application starter template for [Rust](https://www.rust-lang.org/).
 
 ## Instructions
 
