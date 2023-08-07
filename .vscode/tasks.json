@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Rust: cargo watch -x build",
+      "type": "shell",
+      "command": "cargo watch --clear --quiet --watch ./src --watch ./Cargo.toml --exec build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Rust: cargo watch -x run",
+      "type": "shell",
+      "command": "cargo watch --clear --quiet --watch ./src --watch ./Cargo.toml --exec run",
+      "problemMatcher": []
+    },
+    {
+      "label": "Rust: cargo watch -x test",
+      "type": "shell",
+      "command": "cargo watch --clear --quiet --watch ./src --watch ./Cargo.toml --exec test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Rust: cargo watch -x check",
+      "type": "shell",
+      "command": "cargo watch --clear --quiet --watch ./src --watch ./Cargo.toml --exec check",
+      "problemMatcher": []
+    },
+    {
+      "label": "Rust: cargo clippy",
+      "type": "shell",
+      "command": "cargo clippy --quiet -- -W clippy::pedantic -A clippy::missing_errors_doc -A clippy::must_use_candidate",
+      "problemMatcher": []
+    }
+  ]
+}

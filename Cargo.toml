@@ -1,0 +1,19 @@
+[package]
+categories = ["command-line-utilities"]
+description = "Starter template for Rust CLI applications"
+documentation = "https://docs.rs/rust-cli-app-template"
+edition = "2021"
+homepage = "https://github.com/tobx/rust-cli-app-template"
+license-file = "MIT"
+name = "rust-cli-app-template"
+readme = "README.md"
+repository = "https://github.com/tobx/rust-cli-app-template"
+version = "0.1.0"
+
+[dependencies]
+clap = { version = "4.3.19", features = ["derive"] }
+config = "0.13.3"
+directories = "5.0.1"
+owo-colors = { version = "3.5.0", features = ["supports-colors"] }
+serde = { version = "1.0.183", features = ["derive"] }
+thiserror = "1.0.44"
