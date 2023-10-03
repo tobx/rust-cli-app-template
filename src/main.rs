@@ -12,7 +12,7 @@ use clap::Parser;
 use directories::ProjectDirs;
 
 use crate::{
-    args::{Args, Command},
+    args::Args,
     config::{Config, CONFIG_FILE_NAME, DEFAULT_CONFIG_FILE_CONTENT},
     error::Result,
     terminal::message::write,
@@ -40,15 +40,6 @@ impl Default for AppInfo {
     }
 }
 
-fn route(config: &Config, options: Args) -> Result<()> {
-    use Command::{Create, Info};
-
-    match options.command {
-        Create(options) => commands::create::run(config, &options),
-        Info(_) => commands::info::run(config),
-    }
-}
-
 fn run() -> Result<()> {
     let mut options = Args::parse();
     let config_dir = options.config_dir.get_or_insert_with(|| {
@@ -63,7 +54,7 @@ fn run() -> Result<()> {
         fs::write(&config_file, DEFAULT_CONFIG_FILE_CONTENT)?;
     }
     let config = Config::load(&config_file)?;
-    route(&config, options)
+    args::route(&config, options)
 }
 
 fn main() {
