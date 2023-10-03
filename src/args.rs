@@ -1,22 +1,22 @@
 use std::path::PathBuf;
 
-use clap::Parser;
+use clap::{Parser, Subcommand};
 
 use crate::commands::{create, info};
 
 #[derive(Parser)]
-#[clap(version, about)]
+#[command(version, about)]
 pub struct Args {
     /// Config directory
-    #[clap(long, value_name = "DIR")]
+    #[arg(long, value_name = "DIR")]
     pub config_dir: Option<PathBuf>,
 
-    #[clap(subcommand)]
-    pub subcommand: SubCommand,
+    #[command(subcommand)]
+    pub command: Command,
 }
 
-#[derive(Parser)]
-pub enum SubCommand {
+#[derive(Subcommand)]
+pub enum Command {
     Create(create::Args),
     Info(info::Args),
 }

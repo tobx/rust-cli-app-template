@@ -10,7 +10,7 @@ use crate::{
 #[derive(Default, Parser)]
 pub struct Args {
     /// The title to use
-    #[clap(long, short)]
+    #[arg(long, short)]
     pub title: String,
 }
 

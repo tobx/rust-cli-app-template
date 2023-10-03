@@ -12,7 +12,7 @@ use clap::Parser;
 use directories::ProjectDirs;
 
 use crate::{
-    args::{Args, SubCommand},
+    args::{Args, Command},
     config::{Config, CONFIG_FILE_NAME, DEFAULT_CONFIG_FILE_CONTENT},
     error::Result,
     terminal::message::write,
@@ -41,9 +41,9 @@ impl Default for AppInfo {
 }
 
 fn route(config: &Config, options: Args) -> Result<()> {
-    use SubCommand::{Create, Info};
+    use Command::{Create, Info};
 
-    match options.subcommand {
+    match options.command {
         Create(options) => commands::create::run(config, &options),
         Info(_) => commands::info::run(config),
     }
