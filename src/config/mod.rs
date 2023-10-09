@@ -9,9 +9,10 @@ pub const DEFAULT_CONFIG_FILE_CONTENT: &str = include_str!("default.toml");
 
 #[derive(Deserialize)]
 pub struct Config {
+    pub data_dir: PathBuf,
+
     #[serde(skip)]
     pub dir: PathBuf,
-    pub data_dir: PathBuf,
 }
 
 impl Config {
