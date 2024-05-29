@@ -11,9 +11,9 @@ repository = "https://github.com/tobx/rust-cli-app-template"
 version = "0.2.1"
 
 [dependencies]
-clap = { version = "4.4.6", features = ["derive"] }
-config = "0.13.3"
+clap = { version = "4.5.4", features = ["derive"] }
+config = "0.13.4"
 directories = "5.0.1"
-owo-colors = { version = "3.5.0", features = ["supports-colors"] }
-serde = { version = "1.0.188", features = ["derive"] }
-thiserror = "1.0.49"
+owo-colors = { version = "4.0.0", features = ["supports-colors"] }
+serde = { version = "1.0.203", features = ["derive"] }
+thiserror = "1.0.61"
