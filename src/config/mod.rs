@@ -1,11 +1,16 @@
-use std::path::{Path, PathBuf};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+};
 
-use config::{ConfigError, File, FileFormat};
+use config::{File, FileFormat};
 use serde::Deserialize;
 
-pub const CONFIG_FILE_NAME: &str = "config.toml";
+use crate::error::Result;
 
-pub const DEFAULT_CONFIG_FILE_CONTENT: &str = include_str!("default.toml");
+const CONFIG_FILE_NAME: &str = "config.toml";
+
+const DEFAULT_CONFIG_FILE_CONTENT: &str = include_str!("default.toml");
 
 #[derive(Deserialize)]
 pub struct Config {
@@ -16,16 +21,21 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn load(path: &Path) -> std::result::Result<Self, ConfigError> {
+    pub fn load(dir: &Path) -> Result<Config> {
+        let file = dir.join(CONFIG_FILE_NAME);
+        if !file.exists() {
+            fs::create_dir_all(dir)?;
+            fs::write(&file, DEFAULT_CONFIG_FILE_CONTENT)?;
+        }
         let config = config::Config::builder()
             .add_source(File::from_str(
                 include_str!("default.toml"),
                 FileFormat::Toml,
             ))
-            .add_source(File::from(path).format(FileFormat::Toml))
+            .add_source(File::from(file).format(FileFormat::Toml))
             .build()?;
         let mut config: Config = config.try_deserialize()?;
-        config.dir = path.parent().unwrap().into();
+        config.dir = dir.into();
         Ok(config)
     }
 }

@@ -6,17 +6,10 @@ mod config;
 mod error;
 mod terminal;
 
-use std::fs;
-
 use clap::Parser;
 use directories::ProjectDirs;
 
-use crate::{
-    args::Args,
-    config::{Config, CONFIG_FILE_NAME, DEFAULT_CONFIG_FILE_CONTENT},
-    error::Result,
-    terminal::message::write,
-};
+use crate::{args::Args, config::Config, error::Result, terminal::message::write};
 
 // Those constants will be used for:
 // https://docs.rs/directories/latest/directories/struct.ProjectDirs.html#method.from
@@ -48,12 +41,7 @@ fn run() -> Result<()> {
             .config_dir()
             .to_path_buf()
     });
-    let config_file = config_dir.join(CONFIG_FILE_NAME);
-    if !config_file.exists() {
-        fs::create_dir_all(config_dir)?;
-        fs::write(&config_file, DEFAULT_CONFIG_FILE_CONTENT)?;
-    }
-    let config = Config::load(&config_file)?;
+    let config = Config::load(config_dir)?;
     args::route(&config, args)
 }
 
