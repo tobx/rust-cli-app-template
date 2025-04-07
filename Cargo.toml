@@ -8,12 +8,12 @@ license-file = "MIT"
 name = "cli-app-template"
 readme = "README.md"
 repository = "https://github.com/tobx/rust-cli-app-template"
-version = "0.2.1"
+version = "0.2.2"
 
 [dependencies]
-clap = { version = "4.5.4", features = ["derive"] }
-config = "0.14.0"
-directories = "5.0.1"
-owo-colors = { version = "4.0.0", features = ["supports-colors"] }
-serde = { version = "1.0.203", features = ["derive"] }
-thiserror = "1.0.61"
+clap = { version = "4.5.35", features = ["derive"] }
+config = "0.15.11"
+directories = "6.0.0"
+owo-colors = { version = "4.2.0", features = ["supports-colors"] }
+serde = { version = "1.0.219", features = ["derive"] }
+thiserror = "2.0.12"
