@@ -2,14 +2,14 @@
 categories = ["command-line-utilities"]
 description = "Starter template for CLI applications"
 documentation = "https://docs.rs/cli-app-template"
-edition = "2021"
+edition = "2024"
 homepage = "https://github.com/tobx/rust-cli-app-template"
 license = "MIT"
 license-file = "LICENSE"
 name = "cli-app-template"
 readme = "README.md"
 repository = "https://github.com/tobx/rust-cli-app-template"
-version = "0.2.2"
+version = "0.2.3"
 
 [dependencies]
 clap = { version = "4.5.35", features = ["derive"] }
