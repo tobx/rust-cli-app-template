@@ -2,5 +2,8 @@
   "editor.formatOnSave": true,
   "files.exclude": {
     "target/": true
-  }
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
 }
