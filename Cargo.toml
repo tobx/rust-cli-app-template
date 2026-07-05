@@ -9,12 +9,12 @@ license-file = "LICENSE"
 name = "cli-app-template"
 readme = "README.md"
 repository = "https://github.com/tobx/rust-cli-app-template"
-version = "0.2.5"
+version = "0.2.6"
 
 [dependencies]
-clap = { version = "4.5.48", features = ["derive"] }
-config = "0.15.18"
+clap = { version = "4.6.1", features = ["derive"] }
+config = "0.15.25"
 directories = "6.0.0"
-owo-colors = { version = "4.2.3", features = ["supports-colors"] }
+owo-colors = { version = "4.3.0", features = ["supports-colors"] }
 serde = { version = "1.0.228", features = ["derive"] }
-thiserror = "2.0.17"
+thiserror = "2.0.18"
