@@ -1,7 +1,6 @@
 #![forbid(unsafe_code)]
 
 mod args;
-mod commands;
 mod config;
 mod error;
 mod terminal;
@@ -9,7 +8,12 @@ mod terminal;
 use clap::Parser;
 use directories::ProjectDirs;
 
-use crate::{args::Args, config::Config, error::Result, terminal::message::write};
+use crate::{
+    args::Args,
+    config::Config,
+    error::{Error, Result},
+    terminal::message::write,
+};
 
 // Those constants will be used for:
 // https://docs.rs/directories/latest/directories/struct.ProjectDirs.html#method.from
@@ -34,15 +38,18 @@ impl Default for AppInfo {
 }
 
 fn run() -> Result<()> {
-    let mut args = Args::parse();
-    let config_dir = args.config_dir.get_or_insert_with(|| {
-        ProjectDirs::from(APP_QUALIFIER, APP_ORGANIZATION, APP_NAME)
-            .expect("cannot retrieve users's home directory from operating system")
-            .config_dir()
-            .to_path_buf()
-    });
-    let config = Config::load(config_dir)?;
-    args::route(&config, args)
+    let args = Args::parse();
+    let config_dir = args
+        .config_dir
+        .or_else(|| {
+            ProjectDirs::from(APP_QUALIFIER, APP_ORGANIZATION, APP_NAME)
+                .map(|dirs| dirs.config_dir().to_path_buf())
+        })
+        .ok_or_else(|| {
+            Error::System("cannot retrieve user's home directory from operating system".into())
+        })?;
+    let config = Config::load(&config_dir)?;
+    args::route(&config, args.command)
 }
 
 fn main() {

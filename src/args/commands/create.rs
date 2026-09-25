@@ -1,10 +1,19 @@
+use std::io;
+
 use clap::Parser;
 
 use crate::{
     config::Config,
-    error::Result,
     terminal::{color::Colorize, message::write},
 };
+
+pub type Result<T> = std::result::Result<T, Error>;
+
+#[derive(thiserror::Error, Debug)]
+pub enum Error {
+    #[error("io error: {0}")]
+    Io(#[from] io::Error),
+}
 
 /// Create something
 #[derive(Default, Parser)]

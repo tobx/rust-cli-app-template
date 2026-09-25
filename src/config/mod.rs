@@ -1,16 +1,24 @@
 use std::{
-    fs,
+    fs, io,
     path::{Path, PathBuf},
 };
 
-use config::{File, FileFormat};
+use config::{ConfigError, File, FileFormat};
 use serde::Deserialize;
 
-use crate::error::Result;
+pub type Result<T> = std::result::Result<T, Error>;
 
 const CONFIG_FILE_NAME: &str = "config.toml";
 
 const DEFAULT_CONFIG_FILE_CONTENT: &str = include_str!("default.toml");
+
+#[derive(thiserror::Error, Debug)]
+pub enum Error {
+    #[error("config error: {0}")]
+    Config(#[from] ConfigError),
+    #[error("io error: {0}")]
+    Io(#[from] io::Error),
+}
 
 #[derive(Deserialize)]
 pub struct Config {
