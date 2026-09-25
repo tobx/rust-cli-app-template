@@ -37,7 +37,7 @@ fn run() -> Result<()> {
     let mut args = Args::parse();
     let config_dir = args.config_dir.get_or_insert_with(|| {
         ProjectDirs::from(APP_QUALIFIER, APP_ORGANIZATION, APP_NAME)
-            .expect("cannot retrieve home directory from operating system")
+            .expect("cannot retrieve users's home directory from operating system")
             .config_dir()
             .to_path_buf()
     });
