@@ -37,17 +37,18 @@ impl Default for AppInfo {
     }
 }
 
+fn retrieve_project_dirs() -> Result<ProjectDirs> {
+    ProjectDirs::from(APP_QUALIFIER, APP_ORGANIZATION, APP_NAME).ok_or_else(|| {
+        Error::System("cannot retrieve user's home directory from operating system".into())
+    })
+}
+
 fn run() -> Result<()> {
     let args = Args::parse();
-    let config_dir = args
-        .config_dir
-        .or_else(|| {
-            ProjectDirs::from(APP_QUALIFIER, APP_ORGANIZATION, APP_NAME)
-                .map(|dirs| dirs.config_dir().to_path_buf())
-        })
-        .ok_or_else(|| {
-            Error::System("cannot retrieve user's home directory from operating system".into())
-        })?;
+    let config_dir = args.config_dir.map_or_else(
+        || retrieve_project_dirs().map(|dirs| dirs.config_dir().to_path_buf()),
+        Ok,
+    )?;
     let config = Config::load(&config_dir)?;
     args::route(&config, args.command)
 }
