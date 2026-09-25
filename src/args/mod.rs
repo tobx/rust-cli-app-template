@@ -1,4 +1,5 @@
-pub mod commands;
+pub mod create;
+pub mod info;
 
 use std::path::PathBuf;
 
@@ -19,8 +20,8 @@ pub struct Args {
 
 #[derive(Subcommand)]
 pub enum Command {
-    Create(commands::create::Args),
-    Info(commands::info::Args),
+    Create(create::Args),
+    Info(info::Args),
 }
 
 pub fn route(config: &Config, command: Command) -> Result<()> {
@@ -28,10 +29,10 @@ pub fn route(config: &Config, command: Command) -> Result<()> {
 
     match command {
         Create(options) => {
-            commands::create::run(config, &options)?;
+            create::run(config, &options)?;
         }
         Info(_) => {
-            commands::info::run(config)?;
+            info::run(config)?;
         }
     }
     Ok(())

@@ -1,5 +1,5 @@
 use crate::{
-    args::commands::{create, info},
+    args::{create, info},
     config,
 };
 
