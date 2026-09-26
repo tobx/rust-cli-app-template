@@ -1,7 +1,5 @@
 use std::io;
 
-use clap::Parser;
-
 use crate::{
     AppInfo,
     config::Config,
@@ -17,7 +15,7 @@ pub enum Error {
 }
 
 /// Show application info
-#[derive(Default, Parser)]
+#[derive(clap::Args)]
 pub struct Args;
 
 pub fn run(config: &Config) -> Result<()> {

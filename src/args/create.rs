@@ -1,7 +1,5 @@
 use std::io;
 
-use clap::Parser;
-
 use crate::{
     config::Config,
     terminal::{color::Colorize, message::write},
@@ -16,7 +14,7 @@ pub enum Error {
 }
 
 /// Create something
-#[derive(Default, Parser)]
+#[derive(clap::Args)]
 pub struct Args {
     /// The title to use
     #[arg(long, short)]
